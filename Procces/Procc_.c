@@ -17,7 +17,7 @@ int main() {
 	if (file != INVALID_HANDLE_VALUE) {
 		DWORD countreadbytes = 100;
 		DWORD readingbytes = 100;
-		char* stroka = calloc(size, sizeof(char));
+		char* stroka = calloc(size+1, sizeof(char));
 		if (!(ReadFile(file, stroka, size, &readingbytes, NULL))) {
 			file = CreateFile(L"result.txt", GENERIC_READ, NULL, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf(stroka, "Ошибка");
@@ -27,11 +27,9 @@ int main() {
 		CloseHandle(file);
 		int procc = CreateProcessA("..\\x64\\Debug\\Newprocc.exe",stroka, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
 
-	
 		WaitForSingleObject(pi.hProcess, INFINITE);
 		DWORD dwCode;
 		GetExitCodeProcess(pi.hProcess, &dwCode);
-
 
 		if (dwCode == 1) {
 			size = countsymbls("result.txt");
