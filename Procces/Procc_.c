@@ -13,6 +13,7 @@ int main() {
 	ZeroMemory(&pi, sizeof(pi));
 	int size = countsymbls("data.txt");
 	HANDLE file = CreateFile(L"data.txt", GENERIC_READ, NULL, 0, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
 	if (file != INVALID_HANDLE_VALUE) {
 		DWORD countreadbytes = 100;
 		DWORD readingbytes = 100;
@@ -25,10 +26,12 @@ int main() {
 		}
 		CloseHandle(file);
 		int procc = CreateProcessA("..\\x64\\Debug\\Newprocc.exe",stroka, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
+
 	
 		WaitForSingleObject(pi.hProcess, INFINITE);
 		DWORD dwCode;
 		GetExitCodeProcess(pi.hProcess, &dwCode);
+
 
 		if (dwCode!= 1) {
 			size = countsymbls("result.txt");
