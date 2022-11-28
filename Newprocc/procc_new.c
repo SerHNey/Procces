@@ -26,19 +26,21 @@ int main(int argc, char* argv[]) {
 
 
 	int i = 0;
-	while (stroka[i]) {
-		i++;
-		if (stroka[i] > 96 || stroka[i] < -1 ) {
-			sprintf(stroka, "Ошибка данных2");
-			readingbytes = strlen(stroka);
-			WriteFile(file, stroka, readingbytes, &readingbytes, NULL);
-			return 1;
-		}
-	}
+	//while (stroka[i]) {
+	//	i++;
+	//	if (stroka[i] > 96 || stroka[i] < -1 ) {
+	//		sprintf(stroka, "Ошибка данных2");
+	//		readingbytes = strlen(stroka);
+	//		WriteFile(file, stroka, readingbytes, &readingbytes, NULL);
+	//		return 1;
+	//	}
+	//}
 	char* number;
 	number = strtok(stroka, " ");
 	double numbers[3];
+
 	numbers[0] = atof(number);
+
 	i = 1;
 	while (number != NULL)
 	{
@@ -52,7 +54,8 @@ int main(int argc, char* argv[]) {
 		if (i > 3)
 			break;
 	}
-	double a = -3; double b = -14; double c = 5;
+	double a = numbers[0]; double b = numbers[1]; double c = numbers[2];
+
 	double diskrimenant = sqrt(pow(b, 2) - 4 * a * c);
 	if (diskrimenant < 0) {
 		sprintf(stroka, "Дискриминант меньше 0\n Корней нет");
