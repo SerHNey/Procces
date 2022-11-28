@@ -6,14 +6,11 @@ DWORD countreadbytes = 100;
 DWORD readingbytes = 100;
 int main(int argc, char* argv[]) {
 	char* stroka = calloc(100, 1);
-
 	strcat(stroka, argv[0]);
 	strcat(stroka, " ");
 	strcat(stroka, argv[1]);
 	strcat(stroka, " ");
 	strcat(stroka, argv[2]);
-
-	HANDLE file2 = CreateFile(L"result2.txt", GENERIC_WRITE, NULL, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	
 	HANDLE file = CreateFile(L"result.txt", GENERIC_WRITE, NULL, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -22,19 +19,17 @@ int main(int argc, char* argv[]) {
 	if (p)
 		*(p) = '\0';
 	puts(stroka);
-	WriteFile(file2, stroka, strlen(stroka), &readingbytes, NULL);
-
 
 	int i = 0;
-	//while (stroka[i]) {
-	//	i++;
-	//	if (stroka[i] > 96 || stroka[i] < -1 ) {
-	//		sprintf(stroka, "Ошибка данных2");
-	//		readingbytes = strlen(stroka);
-	//		WriteFile(file, stroka, readingbytes, &readingbytes, NULL);
-	//		return 1;
-	//	}
-	//}
+	while (stroka[i]) {
+		i++;
+		if (stroka[i] > 96 || stroka[i] < -1 ) {
+			sprintf(stroka, "Ошибка данных2");
+			readingbytes = strlen(stroka);
+			WriteFile(file, stroka, readingbytes, &readingbytes, NULL);
+			return 1;
+		}
+	}
 	char* number;
 	number = strtok(stroka, " ");
 	double numbers[3];

@@ -33,7 +33,7 @@ int main() {
 		GetExitCodeProcess(pi.hProcess, &dwCode);
 
 
-		if (dwCode!= 1) {
+		if (dwCode == 1) {
 			size = countsymbls("result.txt");
 			stroka = calloc(countsymbls("result.txt"), sizeof(char));
 
